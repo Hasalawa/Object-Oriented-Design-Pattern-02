@@ -2,26 +2,28 @@ name: Java CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
 
-    - name: Compile Java classes
-      run: javac src/com/callisto/notification/*.java
+      - name: Compile Java classes
+        working-directory: Decorator-Design-Pattern
+        run: javac src/com/callisto/notification/*.java
 
-    - name: Run OrderService (Verify Output)
-      run: java -cp src com.callisto.notification.OrderService
+      - name: Run OrderService
+        working-directory: Decorator-Design-Pattern
+        run: java -cp src com.callisto.notification.OrderService
