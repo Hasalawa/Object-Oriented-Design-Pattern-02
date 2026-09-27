@@ -20,8 +20,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    -  name: Compile Java classes
-       run: javac Decorator-Design-Pattern/src/com/callisto/notification/*.java
+    - name: Compile Java classes
+      run: javac Decorator-Design-Pattern/src/com/callisto/notification/*.java
 
-    -   name: Run OrderService
-        run: java -cp Decorator-Design-Pattern/src com.callisto.notification.OrderServicerService
+    - name: Run OrderService (Verify Output)
+      run: java -cp Decorator-Design-Pattern/src com.callisto.notification.OrderService
