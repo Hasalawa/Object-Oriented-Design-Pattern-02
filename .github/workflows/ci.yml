@@ -20,8 +20,24 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Compile Java classes
-      run: javac Decorator-Design-Pattern/src/com/callisto/notification/*.java
+    - name: Find and Compile Java classes
+      run: |
+        # ව්‍යාපෘතියේ ඇති සියලුම .java ගොනු සොයාගැනීම
+        find . -name "*.java" > sources.txt
+        echo "--- Found Java Files ---"
+        cat sources.txt
+        
+        # ගොනු තිබේ නම් පමණක් Compile කිරීම
+        if [ -s sources.txt ]; then
+          javac @sources.txt
+        else
+          echo "Error: ඔයාගේ GitHub රිපොසිටරියේ කිසිම .java ෆයිල් එකක් නැහැ! කරුණාකර Java files ටික අලුතින් commit කරලා push කරන්න."
+          exit 1
+        fi
 
     - name: Run OrderService (Verify Output)
-      run: java -cp Decorator-Design-Pattern/src com.callisto.notification.OrderService
+      run: |
+        # කේතය ධාවනය කිරීමට අවශ්‍ය නිවැරදි Classpath එක ස්වයංක්‍රීයව සොයාගැනීම
+        CLASSPATH=$(dirname $(find . -type d -name "com" | head -n 1))
+        echo "Running from classpath: $CLASSPATH"
+        java -cp $CLASSPATH com.callisto.notification.OrderService
