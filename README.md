@@ -1,4 +1,4 @@
-# Object-Oriented Design Patterns (OODP)
+# Object Oriented Design Patterns (OODP)
 
 Welcome to the Object-Oriented Design Patterns repository! This project serves as a practical guide and implementation reference for 13 essential Gang of Four (GoF) design patterns. 
 
